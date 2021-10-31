@@ -3,19 +3,19 @@ import useAuth from '../../hooks/useAuth';
 import './MyOrder.css'
 const MyOrders = () => {
     const [myOrders, setMyOrders] = useState([]);
-    const {user} = useAuth();
-    
-    useEffect( () => {
-        fetch(`http://localhost:5050/Orders`)
+    const { user } = useAuth();
+
+    useEffect(() => {
+        fetch(`https://howling-broomstick-15213.herokuapp.com/Orders`)
             .then(res => res.json())
             .then(data => setMyOrders(data))
-    },[])
+    }, [])
 
     // Delete Order
     const handleDeleteOrder = id => {
         const proceed = window.confirm('Are you sure want to delete');
         if (proceed) {
-            const url = `http://localhost:5050/orders/${id}`;
+            const url = `https://howling-broomstick-15213.herokuapp.com/orders/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -30,7 +30,7 @@ const MyOrders = () => {
         }
 
     }
-    
+
     return (
         <div className="py-5">
             <h1>This is my ordered list</h1>
@@ -47,7 +47,7 @@ const MyOrders = () => {
                             <th>Action</th>
                         </tr>
                     </thead>
-                   
+
                     {
                         myOrders.filter(order => order.email === user.email).map(orders =>
                             <tbody key={orders._id}>
@@ -58,19 +58,19 @@ const MyOrders = () => {
                                     <td data-label="Email">{orders.email}</td>
                                     <td data-label="Mobile">{orders.mobile}</td>
                                     <td data-label="Staus">{orders.status}</td>
-                                    <td data-label="Action"><button onClick={() => handleDeleteOrder(orders._id) } className="btn btn-danger">Delete</button></td>
+                                    <td data-label="Action"><button onClick={() => handleDeleteOrder(orders._id)} className="btn btn-danger">Delete</button></td>
                                 </tr>
 
                             </tbody>
-               
-                           
+
+
 
                         )
                     }
                 </table>
-              
+
             </div>
-            
+
         </div>
     );
 };

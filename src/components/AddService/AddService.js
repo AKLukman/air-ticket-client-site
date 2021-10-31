@@ -6,7 +6,7 @@ const AddService = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         console.log(data);
-        axios.post('http://localhost:5050/service', data)
+        axios.post('https://howling-broomstick-15213.herokuapp.com/service', data)
             .then(res => {
                 console.log(res);
                 if (res.data.insertedId) {

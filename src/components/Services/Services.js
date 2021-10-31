@@ -5,11 +5,11 @@ import DisplayServices from '../DisplayServices/DisplayServices';
 const Services = () => {
     const [services, setServices] = useState([]);
 
-    useEffect( () => {
-        fetch(`http://localhost:5050/service`)
-        .then(res => res.json())
-        .then(data => setServices(data))
-    },[])
+    useEffect(() => {
+        fetch(`https://howling-broomstick-15213.herokuapp.com/service`)
+            .then(res => res.json())
+            .then(data => setServices(data))
+    }, [])
 
     return (
         <div>
@@ -18,10 +18,10 @@ const Services = () => {
                     <h1>Our Services</h1>
                     <p>Get our fantsctic services wit cheapest price</p>
                     {
-                        services.map(service => <DisplayServices 
-                                                    key={service._id}
-                                                    service = {service}
-                                                ></DisplayServices>)
+                        services.map(service => <DisplayServices
+                            key={service._id}
+                            service={service}
+                        ></DisplayServices>)
                     }
                 </div>
             </div>

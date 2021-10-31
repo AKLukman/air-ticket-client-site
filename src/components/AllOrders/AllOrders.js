@@ -3,25 +3,25 @@ import React, { useEffect, useState } from 'react';
 const AllOrders = () => {
     const [allOrders, setAllOrders] = useState([]);
     const [loading, setLoading] = useState(false);
-    useEffect( () => {
+    useEffect(() => {
         myFunction();
-        fetch(`http://localhost:5050/Orders`)
-        .then(res => res.json())
-        .then(data => {
-            setAllOrders(data)
-            setLoading(false)
-        })
-    },[]);
+        fetch(`https://howling-broomstick-15213.herokuapp.com/Orders`)
+            .then(res => res.json())
+            .then(data => {
+                setAllOrders(data)
+                setLoading(false)
+            })
+    }, []);
     const myFunction = () => {
         setLoading(true)
     };
 
-    
+
     // Delete Order
     const handleDeleteOrder = id => {
         const proceed = window.confirm('Are you sure want to delete');
         if (proceed) {
-            const url = `http://localhost:5050/orders/${id}`;
+            const url = `https://howling-broomstick-15213.herokuapp.com/orders/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -43,7 +43,7 @@ const AllOrders = () => {
         </div>)
     return (
         <div>
-            
+
             <div className="container">
                 <table className="table">
                     <thead>
